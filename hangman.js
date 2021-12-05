@@ -20,11 +20,16 @@ function startHm(){
 }
 
 function letterChecker(){
+    let count = 0;
     guessedLetters = guessedLetters.split('')
     const letter = document.getElementById('userInput').value;
     for(let i=0; i<word.length; i++){
         if(word[i] === letter){
             guessedLetters[i] = letter;
+            count = count+1;
+            document.getElementById('incorrect').textContent= ""
+        }else if(count<1){
+            document.getElementById('incorrect').textContent= "WRONG!";
         }
     }
     guessedLetters = guessedLetters.join('');
