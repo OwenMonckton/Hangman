@@ -1,0 +1,31 @@
+body{
+    background-color: rgb(50, 50, 50);
+    font-family: Arial;
+    font-size: 2.5em;
+    color: azure;
+    width: auto;
+    text-align: center;
+}
+#hangman{
+    margin: 0px;
+}
+#hiddenWord{
+    margin: 0px;
+}
+#guessedLetters{
+    font-size: 0.75em;
+    margin: 0px;
+}
+#incorrect{
+    color: red;
+    margin: 0px;
+}
+#lettersGuessed{
+    margin: 0px;
+}
+#newWord{
+    font-size: 20px;
+    border-radius: 12px;
+    border: 0px;
+    padding: 10px 10px;
+}
