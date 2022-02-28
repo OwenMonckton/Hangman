@@ -71,6 +71,7 @@ function newWord(){
     document.querySelector('#newWord').style.display = 'none';
     document.querySelector('#guessedLetters').style.display = 'block';
     document.querySelector('#lettersGuessed').style.display = 'block';
+    document.querySelector('#win').style.display = 'none';
 }
 
 function winCheck(){
@@ -78,18 +79,26 @@ function winCheck(){
     for(let i=0; i<guessedLetters.length; i++){
         if(guessedLetters[i]=== '_'){
             win = false;
+            break;
         }else{
             win = true;
         }
     }
     if(win === true){
-        
+        document.querySelector('#newWord').style.display = 'inline';
+        document.querySelector('#win').style.display = 'block';
+        document.querySelector('#win').textContent = 'You Win!';
+        document.querySelector('#userInput').style.display = 'none';
+        document.querySelector('#guessedLetters').style.display = 'none';
+        document.querySelector('#lettersGuessed').style.display = 'none';
     }
 }
 
 function wrongCountCheck(){
     const canvas = document.querySelector('canvas');
     const c = canvas.getContext('2d');
+    c.strokeStyle = '#ffffff';
+    c.fillStyle = '#ffffff';
     switch(wrongCount){
         case 1:
             //base

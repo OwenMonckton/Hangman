@@ -29,3 +29,7 @@ body{
     border: 0px;
     padding: 10px 10px;
 }
+#win{
+    color: green;
+    margin: 0px;
+}
