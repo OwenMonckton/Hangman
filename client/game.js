@@ -1,4 +1,3 @@
-//import * as canvas from './drawing.mjs';
 window.addEventListener('load', init);
 const words=[
     'cat',
@@ -41,16 +40,26 @@ function letterChecker(){
         }
     }
     if(letterFound === false){
-        document.querySelector('#incorrect').textContent= "WRONG!";
-        wrongCount = wrongCount+1;
-        wrongCountCheck();
+        if(lettersGuessed.textContent.includes(letter) !== true){
+            wrongCount = wrongCount+1;    
+        }
+        document.querySelector('#incorrect').textContent= "Incorrect!";
     }
     document.querySelector('#userInput').value = "";
-    lettersGuessed.textContent= lettersGuessed.textContent + letter;
-    lettersGuessed.textContent= lettersGuessed.textContent.split('').join(' ');
+    checkGuessedLetters(letter, lettersGuessed);
+    lettersGuessed.textContent = lettersGuessed.textContent.split('').join(' ');
     guessedLetters = guessedLetters.join('');
     document.querySelector('#hiddenWord').textContent=guessedLetters.split('').join(' ');
+    wrongCountCheck();
     winCheck();
+}
+
+function checkGuessedLetters(letter, lettersGuessed){
+    if(lettersGuessed.textContent.includes(letter) === true){
+        document.querySelector('#incorrect').textContent= "You have already guessed that!";
+    }else{
+        lettersGuessed.textContent= lettersGuessed.textContent + letter;
+    }
 }
 
 function newWord(){

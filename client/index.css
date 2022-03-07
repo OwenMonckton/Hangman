@@ -1,0 +1,31 @@
+#hangman{
+    margin: 0px;
+}
+#hangman a{
+    color: azure;
+    text-decoration: none;
+}
+.nav-list{
+    list-style-type: none;
+}
+.nav-list li{
+    margin: 5%;
+}
+.nav-list a{
+    color: azure;
+    text-decoration: none;
+}
+body{
+    background-color: rgb(50, 50, 50);
+    font-family: Arial;
+    font-size: 2.5em;
+    color: azure;
+    width: auto;
+    text-align: center;
+}
+#play{
+    font-size: 20px;
+    border-radius: 12px;
+    border: 0px;
+    padding: 10px 10px;
+}
