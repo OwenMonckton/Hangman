@@ -111,53 +111,53 @@ function wrongCountCheck(){
     switch(wrongCount){
         case 1:
             //base
-            c.fillRect(250,180,150,10);
+            c.fillRect(0,190,150,10);
             break;
         case 2:
             //spine
-            c.fillRect(380,180,10,-150);
+            c.fillRect(130,190,10,-190);
             break;
         case 3:
             //bridge
-            c.fillRect(250,15,140,15);
+            c.fillRect(35,0,105,10);
             break;
         case 4:
             //rope
-            c.fillRect(265,30,5,30);
+            c.fillRect(55,10,5,30);
             break;
         case 5:
             //head
             c.beginPath();
-            c.arc(267.5, 70, 10, 0, Math.PI * 2, true); // Outer circle
+            c.arc(57.5, 50, 10, 0, Math.PI * 2, true); // Outer circle
             c.stroke();
             break;
         case 6:
             //body
             c.beginPath();
-            c.moveTo(267.5,80);
-            c.lineTo(267.5,120);
+            c.moveTo(57.5,60);
+            c.lineTo(57.5,100);
             c.stroke();
             break;
         case 7:
             //arms
             c.beginPath();
             //left arm
-            c.moveTo(267.5,85);
-            c.lineTo(257.5,95);
+            c.moveTo(57.5,65);
+            c.lineTo(47.5,85);
             //right arm
-            c.moveTo(267.5,85);
-            c.lineTo(277.5,95);
+            c.moveTo(57.5,65);
+            c.lineTo(67.5,85);
             c.stroke();
             break;
         case 8:
             //legs
            c.beginPath();
             //left leg
-            c.moveTo(267.5,120);
-            c.lineTo(257.5,145);
+            c.moveTo(57.5,100);
+            c.lineTo(47.7,125);
             //right leg
-            c.moveTo(267.5,120);
-            c.lineTo(277.5,145);
+            c.moveTo(57.5,100);
+            c.lineTo(67.5,125);
             c.stroke();
             document.querySelector('#newWord').style.display = 'inline';
             document.querySelector('#incorrect').textContent = 'You lose!';

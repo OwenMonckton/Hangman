@@ -10,6 +10,7 @@
 }
 .nav-list li{
     margin: 5%;
+    transition: ease-out 0.3s;
 }
 .nav-list a{
     color: azure;
@@ -23,9 +24,6 @@ body{
     width: auto;
     text-align: center;
 }
-#play{
-    font-size: 20px;
-    border-radius: 12px;
-    border: 0px;
-    padding: 10px 10px;
+.nav-list li:hover{
+    font-size: 150%;
 }
