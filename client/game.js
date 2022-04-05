@@ -18,15 +18,15 @@ for(let i=0;i<word.length;i++){
     guessedLetters = guessedLetters+'_';
 }
 let wrongCount = 0;
-
+let score = 0;
 function init(){
     document.querySelector('#hiddenWord').textContent = guessedLetters.split('').join(' ');
     document.querySelector('#userInput').addEventListener('keyup', letterChecker);
     document.querySelector('#newWord').addEventListener('click', newWord);
     document.querySelector('#newWord').style.display = 'none';
 }
-
 function letterChecker(){
+    score = score+1
     let lettersGuessed = document.querySelector('#lettersGuessed');
     let letterFound = false;
     guessedLetters = guessedLetters.split('')
@@ -51,9 +51,8 @@ function letterChecker(){
     guessedLetters = guessedLetters.join('');
     document.querySelector('#hiddenWord').textContent=guessedLetters.split('').join(' ');
     wrongCountCheck();
-    winCheck();
+    winCheck(score);
 }
-
 function checkGuessedLetters(letter, lettersGuessed){
     if(lettersGuessed.textContent.includes(letter) === true){
         document.querySelector('#incorrect').textContent= "You have already guessed that!";
@@ -61,7 +60,6 @@ function checkGuessedLetters(letter, lettersGuessed){
         lettersGuessed.textContent= lettersGuessed.textContent + letter;
     }
 }
-
 function newWord(){
     document.querySelector('#incorrect').textContent= "";
     document.querySelector('#lettersGuessed').textContent= "";
@@ -75,6 +73,7 @@ function newWord(){
     const canvas = document.querySelector('canvas');
     const c = canvas.getContext('2d');
     c.clearRect(0,0,canvas.width,canvas.height);
+    score = 0;
     wrongCount = 0;
     document.querySelector('#userInput').style.display="inline";
     document.querySelector('#newWord').style.display = 'none';
@@ -82,8 +81,7 @@ function newWord(){
     document.querySelector('#lettersGuessed').style.display = 'block';
     document.querySelector('#win').style.display = 'none';
 }
-
-function winCheck(){
+function winCheck(score){
     let win;
     for(let i=0; i<guessedLetters.length; i++){
         if(guessedLetters[i]=== '_'){
@@ -96,13 +94,12 @@ function winCheck(){
     if(win === true){
         document.querySelector('#newWord').style.display = 'inline';
         document.querySelector('#win').style.display = 'block';
-        document.querySelector('#win').textContent = 'You Win!';
+        document.querySelector('#win').textContent = 'You Win! It took you '+score+' guesses.';
         document.querySelector('#userInput').style.display = 'none';
         document.querySelector('#guessedLetters').style.display = 'none';
         document.querySelector('#lettersGuessed').style.display = 'none';
     }
 }
-
 function wrongCountCheck(){
     const canvas = document.querySelector('canvas');
     const c = canvas.getContext('2d');

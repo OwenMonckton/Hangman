@@ -12,3 +12,4 @@ const pets=[
     'turtle',
     'bird',
 ]
+module.exports = pets;
