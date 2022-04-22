@@ -1,32 +1,32 @@
-window.addEventListener('load', init);
-const words=[
-    'cat',
-    'dog',
-    'rabbit',
-    'hamster',
-    'gerbil',
-    'mouse',
-    'parrot',
-    'chipmunk',
-]
-//choosing the word for the user to guess
-let word = words[Math.floor(Math.random()*words.length)];
-console.log(word);
-//creates underscores the same length as the word
-let guessedLetters = '';
-for(let i=0;i<word.length;i++){
-    guessedLetters = guessedLetters+'_';
-}
+window.addEventListener('load', loadWord);
+//sets up global variables
 let wrongCount = 0;
 let score = 0;
+let guessedLetters;
+let word;
+//fetches word to be used from server
+async function loadWord(){
+    const response = await fetch('petWords');
+    let petWord = await response.json();
+    let word = petWord;
+    document.querySelector('#hiddenWord').textContent = word;
+    init();
+}
+//initialises buttons and creates blanks for the user to guess
 function init(){
-    document.querySelector('#hiddenWord').textContent = guessedLetters.split('').join(' ');
     document.querySelector('#userInput').addEventListener('keyup', letterChecker);
     document.querySelector('#newWord').addEventListener('click', newWord);
     document.querySelector('#newWord').style.display = 'none';
+    word = document.querySelector('#hiddenWord').textContent; 
+    guessedLetters = '';
+    for(let i=0;i<word.length;i++){
+        guessedLetters = guessedLetters+'_';
+    }
+    document.querySelector('#hiddenWord').textContent = guessedLetters.split('').join(' ');
 }
+//checks letter user inputted
 function letterChecker(){
-    score = score+1
+    document.querySelector('#hiddenWord').textContent = guessedLetters.split('').join(' ');
     let lettersGuessed = document.querySelector('#lettersGuessed');
     let letterFound = false;
     guessedLetters = guessedLetters.split('')
@@ -53,23 +53,26 @@ function letterChecker(){
     wrongCountCheck();
     winCheck(score);
 }
+//checks if letter guessed has already been inputted
 function checkGuessedLetters(letter, lettersGuessed){
     if(lettersGuessed.textContent.includes(letter) === true){
         document.querySelector('#incorrect').textContent= "You have already guessed that!";
     }else{
         lettersGuessed.textContent= lettersGuessed.textContent + letter;
+        score = score+1;
     }
 }
+//generates new word for user to guess and clears all fields
 function newWord(){
+    loadWord();
     document.querySelector('#incorrect').textContent= "";
     document.querySelector('#lettersGuessed').textContent= "";
-    word = words[Math.floor(Math.random()*words.length)];
-    console.log(word);
+    word = document.querySelector('#hiddenWord').textContent; 
     guessedLetters = '';
     for(let i=0;i<word.length;i++){
         guessedLetters = guessedLetters+'_';
     }
-    document.querySelector('#hiddenWord').textContent=guessedLetters.split('').join(' ');
+    document.querySelector('#hiddenWord').textContent = guessedLetters.split('').join(' ');
     const canvas = document.querySelector('canvas');
     const c = canvas.getContext('2d');
     c.clearRect(0,0,canvas.width,canvas.height);
@@ -81,6 +84,7 @@ function newWord(){
     document.querySelector('#lettersGuessed').style.display = 'block';
     document.querySelector('#win').style.display = 'none';
 }
+//checks if user has guessed all the letters
 function winCheck(score){
     let win;
     for(let i=0; i<guessedLetters.length; i++){
@@ -100,6 +104,7 @@ function winCheck(score){
         document.querySelector('#lettersGuessed').style.display = 'none';
     }
 }
+//takes in number of wrong guesses and uses that to draw hangman
 function wrongCountCheck(){
     const canvas = document.querySelector('canvas');
     const c = canvas.getContext('2d');
@@ -157,7 +162,7 @@ function wrongCountCheck(){
             c.lineTo(67.5,125);
             c.stroke();
             document.querySelector('#newWord').style.display = 'inline';
-            document.querySelector('#incorrect').textContent = 'You lose!';
+            document.querySelector('#incorrect').textContent = ('You lose! The word was '+word);
             document.querySelector('#userInput').style.display = 'none';
             document.querySelector('#guessedLetters').style.display = 'none';
             document.querySelector('#lettersGuessed').style.display = 'none';

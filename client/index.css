@@ -1,32 +1,9 @@
 #hangman{
     margin: 0px;
 }
-@media (prefers-color-scheme: dark){
-    #hangman a{
-        color: azure;
-    }
-    .nav-list a{
-        color: azure;
-    }
-    body{
-        background-color: rgb(50, 50, 50);
-        color: azure;
-    }
-}
-@media (perfers-color-scheme: light){
-    a{
-        color: rgb(50, 50, 50);
-    }
-    .nav-list a{
-        color: rgb(50, 50, 50);
-    }
-    body{
-        background-color: azure;
-        color: rgb(50, 50, 50);
-    }
-}
 #hangman a{
     text-decoration: none;
+    color: azure;
 }
 .nav-list{
     list-style-type: none;
@@ -37,8 +14,11 @@
 }
 .nav-list a{
     text-decoration: none;
+    color: azure;
 }
 body{
+    background-color: rgb(50, 50, 50);
+    color: azure;
     font-family: Arial;
     font-size: 2.5em;
     width: auto;
